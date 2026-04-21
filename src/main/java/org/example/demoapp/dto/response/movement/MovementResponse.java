@@ -1,5 +1,7 @@
 package org.example.demoapp.dto.response.movement;
 
+import org.example.demoapp.model.movement.Movement;
+
 public class MovementResponse {
     private Long id;
     private String name;
@@ -11,6 +13,14 @@ public class MovementResponse {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    static public MovementResponse fromEntity(Movement movement) {
+        return new MovementResponse(
+                movement.getId(),
+                movement.getName(),
+                movement.getDescription()
+        );
     }
 
     public Long getId() {

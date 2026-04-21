@@ -23,12 +23,8 @@ public class MovementGetController {
     public ResponseEntity<MovementResponse> find(@PathVariable Long id) {
        Movement movement = movementFinderService.find(id);
 
-        MovementResponse movementResponse = new MovementResponse(
-                movement.getId(),
-                movement.getName(),
-                movement.getDescription()
-        );
+       MovementResponse response = MovementResponse.fromEntity(movement);
 
-       return ResponseEntity.ok(movementResponse);
+       return ResponseEntity.ok(response);
     }
 }
