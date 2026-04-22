@@ -1,6 +1,7 @@
 package org.example.demoapp.model.movement;
 
 import jakarta.persistence.*;
+import org.example.demoapp.dto.request.movement.MovementRequest;
 
 @Entity
 @Table(name="movements")
@@ -22,6 +23,13 @@ public class Movement {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    static public Movement fromRequest(MovementRequest request) {
+        Movement movement = new Movement();
+        movement.setName(request.getName());
+        movement.setDescription(request.getDescription());
+        return movement;
     }
 
     public Long getId() {

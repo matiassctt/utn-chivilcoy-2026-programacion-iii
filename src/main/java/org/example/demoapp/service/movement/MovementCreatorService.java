@@ -1,5 +1,6 @@
 package org.example.demoapp.service.movement;
 
+import org.example.demoapp.dto.request.movement.MovementRequest;
 import org.example.demoapp.model.movement.Movement;
 import org.example.demoapp.repository.movement.JpaMovementRepository;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,8 @@ public class MovementCreatorService {
         this.jpaMovementRepository = jpaMovementRepository;
     }
 
-    public Movement create(Movement movement) {
+    public Movement create(MovementRequest request) {
+        Movement movement = Movement.fromRequest(request);
         return jpaMovementRepository.save(movement);
     }
 }

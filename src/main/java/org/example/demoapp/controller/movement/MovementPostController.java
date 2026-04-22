@@ -1,6 +1,7 @@
 package org.example.demoapp.controller.movement;
 
 import org.example.demoapp.dto.request.movement.MovementRequest;
+import org.example.demoapp.dto.response.movement.MovementResponse;
 import org.example.demoapp.model.movement.Movement;
 import org.example.demoapp.service.movement.MovementCreatorService;
 import org.springframework.http.HttpStatus;
@@ -20,10 +21,11 @@ public class MovementPostController {
     }
 
     @PostMapping
-    public ResponseEntity<Movement> create(@RequestBody MovementRequest movementRequest) {
-        Movement movement = new Movement();
-        movement.setName(movementRequest.getName());
-        movement.setDescription(movementRequest.getDescription());
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.movementCreatorService.create(movement));
+    public ResponseEntity<MovementResponse> create(@RequestBody MovementRequest movementRequest) {
+        Movement movement =  movementCreatorService.create(movementRequest);
+
+        MovementResponse movementResponse = MovementResponse.fromEntity(movement);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(movementResponse);
     }
 }
