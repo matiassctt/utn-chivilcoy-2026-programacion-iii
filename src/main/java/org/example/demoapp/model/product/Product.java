@@ -76,24 +76,24 @@ public class Product {
         this.description = description;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public String getActive() {
+    public Boolean getActive() {
         return active;
     }
-    public void setActive(String active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
-    public String getStock() {
+    public Long getStock() {
         return stock;
     }
-    public void setStock(String stock) {
+    public void setStock(Long stock) {
         this.stock = stock;
     }
 }

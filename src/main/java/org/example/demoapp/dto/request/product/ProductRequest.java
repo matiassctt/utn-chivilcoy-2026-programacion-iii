@@ -30,15 +30,15 @@ public class ProductRequest {
         return description;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public String getActive() {
+    public Boolean getActive() {
         return active;
     }
 
-    public String getStock() {
+    public Long getStock() {
         return stock;
     }
 }

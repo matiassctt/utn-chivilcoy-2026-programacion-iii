@@ -30,12 +30,10 @@ public class ProductResponse {
 
     static public ProductResponse fromEntity(Product product) {
         return new ProductResponse(
-            request.getId(),
-            request.getName(),
-            request.getDescription(),
-            request.getPrice(),
-            request.getActive(),
-            request.getStock()
+            product.getId(), product.getName(), product.getDescription(),
+                product.getPrice(),
+                product.getActive(),
+                product.getStock()
         );
     }
 
@@ -51,15 +49,15 @@ public class ProductResponse {
         return description;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public String getActive() {
+    public Boolean getActive() {
         return active;
     }
 
-    public String getStock() {
+    public Long getStock() {
         return stock;
     }
 }
