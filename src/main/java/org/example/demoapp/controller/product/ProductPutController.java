@@ -1,5 +1,6 @@
 package org.example.demoapp.controller.product;
 
+import jakarta.validation.Valid;
 import org.example.demoapp.dto.request.product.ProductRequest;
 import org.example.demoapp.dto.response.product.ProductResponse;
 import org.example.demoapp.model.product.Product;
@@ -21,7 +22,7 @@ public class ProductPutController {
     @PutMapping("/{id}")
     public ResponseEntity<ProductResponse> update(
             @PathVariable Long id,
-            @RequestBody ProductRequest request
+            @Valid @RequestBody ProductRequest request
     ) {
         Product product = productUpdaterService.update(request, id);
 

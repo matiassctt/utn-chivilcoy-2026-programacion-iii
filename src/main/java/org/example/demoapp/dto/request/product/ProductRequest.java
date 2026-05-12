@@ -1,7 +1,15 @@
 package org.example.demoapp.dto.request.product;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class ProductRequest {
+
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(min = 2, max = 100, message = "El nombre dene tener tantos caracteres")
     private String name;
+
+    @NotBlank
     private String description;
     private Double price;
     private Boolean active;

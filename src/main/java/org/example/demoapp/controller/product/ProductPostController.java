@@ -1,5 +1,6 @@
 package org.example.demoapp.controller.product;
 
+import jakarta.validation.Valid;
 import org.example.demoapp.dto.request.product.ProductRequest;
 import org.example.demoapp.dto.response.product.ProductResponse;
 import org.example.demoapp.model.product.Product;
@@ -21,7 +22,9 @@ public class ProductPostController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponse> create(@RequestBody ProductRequest productRequest) {
+    public ResponseEntity<ProductResponse> create(
+            @Valid @RequestBody ProductRequest productRequest
+    ) {
         Product product =  productCreatorService.create(productRequest);
 
         ProductResponse productResponse = ProductResponse.fromEntity(product);
