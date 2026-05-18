@@ -3,19 +3,23 @@ package org.example.demoapp.service.user;
 import org.example.demoapp.dto.request.user.UserRequest;
 import org.example.demoapp.model.user.User;
 import org.example.demoapp.repository.user.JpaUserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserUpdaterService {
     private final JpaUserRepository jpaUserRepository;
     private final UserFinderService userFinderService;
+    private final PasswordEncoder passwordEncoder;
 
     public UserUpdaterService(
             JpaUserRepository jpaUserRepository,
-            UserFinderService userFinderService
+            UserFinderService userFinderService,
+            PasswordEncoder passwordEncoder
     ) {
         this.jpaUserRepository = jpaUserRepository;
         this.userFinderService = userFinderService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User update(UserRequest userRequest, Long id) {
@@ -23,8 +27,11 @@ public class UserUpdaterService {
 
         user.setUserName(userRequest.getUserName());
         user.setEmail(userRequest.getEmail());
-        user.setPassword(userRequest.getPassword());
         user.setDni(userRequest.getDni());
+
+        if (userRequest.getPassword() != null && !userRequest.getPassword().isBlank()) {
+            user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        }
 
         return jpaUserRepository.save(user);
     }
