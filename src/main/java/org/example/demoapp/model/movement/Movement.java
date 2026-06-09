@@ -2,6 +2,7 @@ package org.example.demoapp.model.movement;
 
 import jakarta.persistence.*;
 import org.example.demoapp.dto.request.movement.MovementRequest;
+import org.example.demoapp.model.category.Category;
 
 @Entity
 @Table(name="movements")
@@ -16,6 +17,10 @@ public class Movement {
 
     @Column(nullable = false)
     private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Movement() {}
 
@@ -52,4 +57,7 @@ public class Movement {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Category getCategory() { return category; }
+    public void setCategory(Category category) { this.category = category; }
 }
